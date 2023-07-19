@@ -3,20 +3,20 @@ import random
 
 pygame.init()
 
-# Window dimensions
+
 WIDTH = 500
 HEIGHT = 800
 
-# Colors
+
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 RED = (200, 0, 0)
 
-# Bird dimensions
+
 BIRD_WIDTH = 64
 BIRD_HEIGHT = 64
 
-# Pipe dimensions
+
 PIPE_WIDTH = 100
 PIPE_GAP = 200
 
@@ -34,9 +34,8 @@ class Bird(pygame.sprite.Sprite):
     def update(self):
         self.velocity += 0.5
         self.rect.y += self.velocity
-        self.rect.x += 5  # Move the bird horizontally
+        self.rect.x += 5 
 
-        # Wrap the bird to the left side of the screen
         if self.rect.left > WIDTH:
             self.rect.right = 0
 
@@ -67,7 +66,7 @@ class Pipe(pygame.sprite.Sprite):
     def update(self):
         self.rect.x -= 5
 
-# Game initialization
+
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Flappy Bird")
 
@@ -88,7 +87,6 @@ def game_over():
     pygame.display.flip()
     pygame.time.wait(2000)
 
-# Game loop
 running = True
 while running:
     clock.tick(30)
