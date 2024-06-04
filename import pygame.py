@@ -1,26 +1,15 @@
 import pygame
 import random
-
 pygame.init()
-
-
 WIDTH = 500
 HEIGHT = 800
-
-
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 RED = (200, 0, 0)
-
-
 BIRD_WIDTH = 64
 BIRD_HEIGHT = 64
-
-
 PIPE_WIDTH = 100
 PIPE_GAP = 200
-
-
 class Bird(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
@@ -30,28 +19,24 @@ class Bird(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = (WIDTH // 2, HEIGHT // 2)
         self.velocity = 0
-
+        
     def update(self):
         self.velocity += 0.5
         self.rect.y += self.velocity
         self.rect.x += 5 
-
         if self.rect.left > WIDTH:
             self.rect.right = 0
 
     def jump(self):
         self.velocity = -8
 
-
-
     def update(self):
         self.velocity += 0.5
         self.rect.y += self.velocity
 
     def jump(self):
         self.velocity = -8
-
-# Pipe class
+        
 class Pipe(pygame.sprite.Sprite):
     def __init__(self, x):
         super().__init__()
@@ -59,7 +44,6 @@ class Pipe(pygame.sprite.Sprite):
         self.image.convert_alpha()
         self.rect = self.image.get_rect()
         self.rect.x = x
-
         self.top_height = random.randint(100, HEIGHT // 2 - 100)
         self.bottom_height = HEIGHT - self.top_height - PIPE_GAP
 
@@ -69,16 +53,13 @@ class Pipe(pygame.sprite.Sprite):
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Flappy Bird")
-
 background = pygame.image.load('background.png').convert()
 bird_group = pygame.sprite.Group()
 bird = Bird()  
 bird_group.add(bird)  
 pipe_group = pygame.sprite.Group()
-
 score = 0
 font = pygame.font.Font(None, 36)
-
 clock = pygame.time.Clock()
 
 def game_over():
